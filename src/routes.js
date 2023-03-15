@@ -10,7 +10,7 @@ import Page404 from './pages/Page404';
 import ProductsPage from './pages/ProductsPage';
 import DashboardAppPage from './pages/DashboardAppPage';
 import LoginByDev from './sections/auth/login/LoginByDev';
-import Homepage from './pages/Homepage';
+import SignUp from './sections/auth/login/SignUp';
 
 // ----------------------------------------------------------------------
 
@@ -21,7 +21,6 @@ export default function Router() {
       element: <DashboardLayout />,
       children: [
         { element: <Navigate to="/dashboard/app" />, index: true },
-        { path: 'home', element: <Homepage /> },
         { path: 'app', element: <DashboardAppPage /> },
         { path: 'user', element: <UserPage /> },
         { path: 'products', element: <ProductsPage /> },
@@ -35,6 +34,10 @@ export default function Router() {
     {
       path: 'loginbydev',
       element: <LoginByDev />,
+    },
+    {
+      path: 'signup',
+      element: <SignUp />,
     },
     {
       element: <SimpleLayout />,
