@@ -9,40 +9,46 @@ import LoginPage from './pages/LoginPage';
 import Page404 from './pages/Page404';
 import ProductsPage from './pages/ProductsPage';
 import DashboardAppPage from './pages/DashboardAppPage';
-import LoginByDev from './sections/auth/login/LoginByDev';
-import SignUp from './sections/auth/login/SignUp';
+import Login from './pages/Authentication/Login';
+import Signup from './pages/Authentication/Signup';
 
 // ----------------------------------------------------------------------
 
 export default function Router() {
   const routes = useRoutes([
     {
-      path: '/dashboard',
-      element: <DashboardLayout />,
+      path: '/Ex',
       children: [
-        { element: <Navigate to="/dashboard/app" />, index: true },
-        { path: 'app', element: <DashboardAppPage /> },
-        { path: 'user', element: <UserPage /> },
-        { path: 'products', element: <ProductsPage /> },
-        { path: 'blog', element: <BlogPage /> },
+        { element: <Navigate to="/Ex/dashboard/app" />, index: true },
+        {
+          path: 'dashboard',
+          element: <DashboardLayout />,
+          children: [
+            { element: <Navigate to="/dashboard/app" />, index: true },
+            { path: 'app', element: <DashboardAppPage /> },
+            { path: 'user', element: <UserPage /> },
+            { path: 'products', element: <ProductsPage /> },
+            { path: 'blog', element: <BlogPage /> },
+          ],
+        },
+        {
+          path: 'login',
+          element: <LoginPage />,
+        },
       ],
     },
     {
       path: 'login',
-      element: <LoginPage />,
-    },
-    {
-      path: 'loginbydev',
-      element: <LoginByDev />,
+      element: <Login />,
     },
     {
       path: 'signup',
-      element: <SignUp />,
+      element: <Signup />,
     },
     {
       element: <SimpleLayout />,
       children: [
-        { element: <Navigate to="/dashboard/app" />, index: true },
+        { element: <Navigate to="/Ex/dashboard/app" />, index: true },
         { path: '404', element: <Page404 /> },
         { path: '*', element: <Navigate to="/404" /> },
       ],

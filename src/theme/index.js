@@ -10,6 +10,7 @@ import typography from './typography';
 import GlobalStyles from './globalStyles';
 import customShadows from './customShadows';
 import componentsOverride from './overrides';
+import commonClasses from './commonClasses';
 
 // ----------------------------------------------------------------------
 
@@ -25,6 +26,7 @@ export default function ThemeProvider({ children }) {
       typography,
       shadows: shadows(),
       customShadows: customShadows(),
+      commonClasses
     }),
     []
   );
