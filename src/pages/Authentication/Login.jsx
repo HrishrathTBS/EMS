@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Container from '@mui/material/Container';
-import { Box, Typography, InputAdornment, Checkbox } from '@mui/material';
+import { Box, Typography, InputAdornment, Checkbox, Paper, Stack, Divider, SvgIcon } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
@@ -9,6 +9,7 @@ import LockIcon from '@mui/icons-material/Lock';
 import Button from '@mui/material/Button';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Visibility } from '@mui/icons-material';
+import GoogleIcon from '@mui/icons-material/Google';
 import { useTheme } from '@emotion/react';
 import { validateEmail, validatePassword } from '../../utils/validations';
 
@@ -17,20 +18,11 @@ const useStyles = styled({
     display: 'flex',
     alignContent: 'center',
     justifyContent: 'center',
+    flexDirection: 'row',
     height: '100vh',
   },
-  flexboxspace: {
-    display: 'flex',
-    alignContent: 'center',
-    justifyContent: 'space-between',
-    height: '100vh',
-    width: '80%',
-  },
-  color: {
-    color: 'primary',
-  },
-  w90: {
-    width: '75%',
+  widthmax: {
+    maxWidth: '400',
   },
 });
 
@@ -86,23 +78,42 @@ const Login = () => {
 
   return (
     <Container maxWidth={'lg'}>
-      {/* <StyledContent > */}
-      <Grid
-        container
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignContent: 'center',
-          width: '100%',
-          mt: '2',
-          height: '100vh',
-        }}
-      >
-        <Grid item lg={6}>
+      <Grid container className={classes.flexboxcenter}>
+        <Paper component="Grid" item lg={6}>
           <img src="/assets/illustrations/illustration_login.png" alt="login" />
-        </Grid>
-        <Grid item columnSpacing={1} lg={5}>
-          <Box pb={2} mt={2}>
+        </Paper>
+        <Grid item columnSpacing={1} lg={6} sx={{ mx: 'auto' }}>
+          <Stack pt={4}>
+            <Typography component="h1" variant="h4" mt="1" textAlign="left">
+              Sign in to Minimal
+            </Typography>
+          </Stack>
+          <Stack pt={2}>
+            <Typography variant="subtitle2" mt="1" textAlign="left">
+              Don't have an account? Get started
+            </Typography>
+          </Stack>
+          <Stack className={classes.flexbox} direction="row" spacing={1} justifyContent="space-between" mt={4}>
+            <Button variant="outlined" sx={{ px: 5, py: 1 }}>
+              <SvgIcon>
+                <GoogleIcon />
+              </SvgIcon>
+            </Button>
+            <Button variant="outlined" sx={{ px: 5, py: 1 }}>
+              <SvgIcon>
+                <GoogleIcon />
+              </SvgIcon>
+            </Button>
+            <Button variant="outlined" sx={{ px: 5, py: 1 }}>
+              <SvgIcon>
+                <GoogleIcon />
+              </SvgIcon>
+            </Button>
+          </Stack>
+          <Stack mt={4}>
+            <Divider>OR</Divider>
+          </Stack>
+          <Stack pb={2} mt={4}>
             <TextField
               className={classes.color}
               fullWidth
@@ -121,7 +132,7 @@ const Login = () => {
               error={errors.email}
               helperText={errors.email}
             />
-          </Box>
+          </Stack>
 
           <TextField
             className={classes.w90}
@@ -166,7 +177,7 @@ const Login = () => {
             }}
           >
             <Checkbox name="remember" label="Remember me" />
-            <Typography variant="subtitle2" underline="hover">
+            <Typography variant="subtitle2" underline="hover" pt={2}>
               Forgot password?
             </Typography>
           </Box>
@@ -177,8 +188,6 @@ const Login = () => {
           </Box>
         </Grid>
       </Grid>
-
-      {/* </StyledContent> */}
     </Container>
   );
 };
