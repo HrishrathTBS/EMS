@@ -1,28 +1,34 @@
 import React, { useState } from 'react';
 import Container from '@mui/material/Container';
-import { Box, Typography, InputAdornment, Checkbox, Paper, Stack, Divider, SvgIcon } from '@mui/material';
+import { Box, Typography, InputAdornment, Checkbox, Stack, Divider, SvgIcon } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
-import { styled } from '@mui/material/styles';
-import PersonIcon from '@mui/icons-material/Person';
-import LockIcon from '@mui/icons-material/Lock';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { blue, red, grey } from '@mui/material/colors';
 import Button from '@mui/material/Button';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
 import { Visibility } from '@mui/icons-material';
 import GoogleIcon from '@mui/icons-material/Google';
+import InstagramIcon from '@mui/icons-material/Instagram';
 import { useTheme } from '@emotion/react';
+import Link from '@mui/material/Link';
 import { validateEmail, validatePassword } from '../../utils/validations';
 
-const useStyles = styled({
-  flexboxcenter: {
-    display: 'flex',
-    alignContent: 'center',
-    justifyContent: 'center',
-    flexDirection: 'row',
-    height: '100vh',
-  },
-  widthmax: {
-    maxWidth: '400',
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: grey[500],
+    },
+    pri: {
+      main: red[500],
+    },
+    secondry: {
+      main: blue[900],
+    },
+    info: {
+      main: blue[500],
+    },
   },
 });
 
@@ -32,7 +38,6 @@ const DefaultValues = {
 };
 
 const Login = () => {
-  const classes = useStyles();
   const [values, setValues] = useState(DefaultValues);
   const [errors, setErrors] = useState({
     email: '',
@@ -77,78 +82,81 @@ const Login = () => {
   };
 
   return (
-    <Container maxWidth={'lg'}>
-      <Grid container className={classes.flexboxcenter}>
-        <Paper component="Grid" item lg={6}>
+    <Container maxWidth="0">
+      <Grid container spacing={2} sx={{ display: 'flex', height: '100vh' }}>
+        <Box
+          item
+          component="Grid"
+          lg={5}
+          sx={{
+            boxShadow: 2,
+            p: 1,
+            textAlign: 'center',
+          }}
+        >
+          <Typography component="h1" variant="h3" mt={18} mb={4} px={4} textAlign="left">
+            Hi, Welcome Back
+          </Typography>
           <img src="/assets/illustrations/illustration_login.png" alt="login" />
-        </Paper>
-        <Grid item columnSpacing={1} lg={6} sx={{ mx: 'auto' }}>
-          <Stack pt={4}>
-            <Typography component="h1" variant="h4" mt="1" textAlign="left">
+        </Box>
+        <Grid item lg={5} sx={{ margin: 'auto' }}>
+          <Stack>
+            <Typography component="h1" variant="h4" pt={13} textAlign="left">
               Sign in to Minimal
             </Typography>
           </Stack>
           <Stack pt={2}>
-            <Typography variant="subtitle2" mt="1" textAlign="left">
-              Don't have an account? Get started
+            <Typography variant="body2" mt="1" textAlign="left">
+              Don't have an account?
+              <Link href="/signup" variant="subtitle2">
+                Get started
+              </Link>
             </Typography>
           </Stack>
-          <Stack className={classes.flexbox} direction="row" spacing={1} justifyContent="space-between" mt={4}>
-            <Button variant="outlined" sx={{ px: 5, py: 1 }}>
-              <SvgIcon>
-                <GoogleIcon />
-              </SvgIcon>
-            </Button>
-            <Button variant="outlined" sx={{ px: 5, py: 1 }}>
-              <SvgIcon>
-                <GoogleIcon />
-              </SvgIcon>
-            </Button>
-            <Button variant="outlined" sx={{ px: 5, py: 1 }}>
-              <SvgIcon>
-                <GoogleIcon />
-              </SvgIcon>
-            </Button>
+          <Stack direction="row" spacing={1} justifyContent="space-between" mt={4}>
+            <ThemeProvider theme={theme}>
+              <Button variant="outlined" sx={{ px: 9, py: 1.5 }}>
+                <SvgIcon>
+                  <GoogleIcon color="pri" />
+                </SvgIcon>
+              </Button>
+              <Button variant="outlined" sx={{ px: 9, py: 1.5 }}>
+                <SvgIcon>
+                  <FacebookOutlinedIcon color="secondry" />
+                </SvgIcon>
+              </Button>
+              <Button variant="outlined" sx={{ px: 9, py: 1.5 }}>
+                <SvgIcon>
+                  <InstagramIcon color="info" />
+                </SvgIcon>
+              </Button>
+            </ThemeProvider>
           </Stack>
           <Stack mt={4}>
-            <Divider>OR</Divider>
+            <Divider>
+              <Typography variant="body2">OR</Typography>
+            </Divider>
           </Stack>
           <Stack pb={2} mt={4}>
             <TextField
-              className={classes.color}
               fullWidth
               name="email"
               label="Email"
-              placeholder="Email"
               onChange={handleChange}
               value={values.email}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <PersonIcon />
-                  </InputAdornment>
-                ),
-              }}
               error={errors.email}
               helperText={errors.email}
             />
           </Stack>
 
           <TextField
-            className={classes.w90}
             type={showPassword ? 'text' : 'password'}
             fullWidth
             name="password"
             label="Password"
-            placeholder="Password"
             onChange={handleChange}
             value={values.password}
             InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <LockIcon />
-                </InputAdornment>
-              ),
               endAdornment: (
                 <InputAdornment
                   position="end"
@@ -178,11 +186,13 @@ const Login = () => {
           >
             <Checkbox name="remember" label="Remember me" />
             <Typography variant="subtitle2" underline="hover" pt={2}>
-              Forgot password?
+              <Link href="#" variant="subtitle2" underline="none">
+                Forgot password?
+              </Link>
             </Typography>
           </Box>
-          <Box mt={2}>
-            <Button variant="contained" onClick={onSubmit}>
+          <Box mt={2} pb={12}>
+            <Button variant="contained" onClick={onSubmit} fullWidth sx={{ p: 1 }}>
               Sign in
             </Button>
           </Box>

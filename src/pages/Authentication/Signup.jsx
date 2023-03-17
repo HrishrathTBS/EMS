@@ -1,30 +1,15 @@
 import React, { useState } from 'react';
-import Container from '@mui/material/Container';
-import { Box, InputAdornment, useTheme } from '@mui/material';
+import { InputAdornment, Typography, useTheme } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
-import PersonIcon from '@mui/icons-material/Person';
-import LockIcon from '@mui/icons-material/Lock';
 import Button from '@mui/material/Button';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Visibility } from '@mui/icons-material';
+import { Stack } from '@mui/system';
 import { IsEmpty, validateEmail, validatePassword } from '../../utils/validations';
 
 const useStyles = styled({
-  flexboxcenter: {
-    display: 'flex',
-    alignContent: 'center',
-    justifyContent: 'center',
-    height: '100vh',
-  },
-  flexboxspace: {
-    display: 'flex',
-    alignContent: 'center',
-    justifyContent: 'space-between',
-    height: '100vh',
-    width: '80%',
-  },
   color: {
     color: 'primary',
   },
@@ -102,135 +87,128 @@ const Signup = () => {
   };
 
   return (
-    <Container maxWidth={'lg'}>
-      <Grid
-        container
+    <Grid
+      container
+      spacing={2}
+      sx={{
+        display: 'flex',
+
+        width: '100%',
+        mt: '2',
+        height: '100vh',
+      }}
+    >
+      <Stack
+        item
+        component="Grid"
+        lg={5}
         sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignContent: 'center',
-          width: '100%',
-          mt: '2',
-          height: '100vh',
+          boxShadow: 2,
+          p: 1,
         }}
       >
-        <Grid item lg={6}>
-          <img src="/assets/illustrations/illustration_login.png" alt="login" />
-        </Grid>
-        <Grid item columnSpacing={1} lg={5}>
-          <Box pb={2} mt={2}>
-            <TextField
-              className={classes.w90}
-              fullWidth
-              name="firstName"
-              label="First Name"
-              placeholder="First Name"
-              onChange={handleChange}
-              value={values.firstName}
-              error={errors.firstName}
-              helperText={errors.firstName}
-            />
-          </Box>
+        <Typography component="h1" variant="h3" mt={10} px={4} textAlign="left">
+          Hi, Welcome to Minimul
+        </Typography>
+        <img src="/assets/illustrations/bg.png" alt="login" />
+      </Stack>
+      <Grid item lg={5} sx={{ margin: 'auto' }}>
+        <Stack>
+          <Typography component="h1" variant="h4" pt={8} textAlign="left">
+            Sign Up to Minimal
+          </Typography>
+        </Stack>
+        <Stack pb={2} mt={2}>
+          <TextField
+            className={classes.w90}
+            fullWidth
+            name="firstName"
+            label="First Name"
+            onChange={handleChange}
+            value={values.firstName}
+            error={errors.firstName}
+            helperText={errors.firstName}
+          />
+        </Stack>
 
-          <Box pb={2} mt={2}>
-            <TextField
-              className={classes.w90}
-              fullWidth
-              name="lastName"
-              label="Last Name"
-              placeholder="Last Name"
-              onChange={handleChange}
-              value={values.lastName}
-              error={errors.lastName}
-              helperText={errors.lastName}
-            />
-          </Box>
-          <Box pb={2} mt={2}>
-            <TextField
-              className={classes.color}
-              fullWidth
-              name="email"
-              label="Email"
-              placeholder="Email"
-              onChange={handleChange}
-              value={values.email}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <PersonIcon />
-                  </InputAdornment>
-                ),
-              }}
-              error={errors.email}
-              helperText={errors.email}
-            />
-          </Box>
+        <Stack pb={2} mt={2}>
+          <TextField
+            className={classes.w90}
+            fullWidth
+            name="lastName"
+            label="Last Name"
+            onChange={handleChange}
+            value={values.lastName}
+            error={errors.lastName}
+            helperText={errors.lastName}
+          />
+        </Stack>
+        <Stack pb={2} mt={2}>
+          <TextField
+            className={classes.color}
+            fullWidth
+            name="email"
+            label="Email"
+            onChange={handleChange}
+            value={values.email}
+            error={errors.email}
+            helperText={errors.email}
+          />
+        </Stack>
 
-          <Box pb={2} mt={2}>
-            <TextField
-              className={classes.w90}
-              type={show.pwd ? 'text' : 'password'}
-              fullWidth
-              name="password"
-              label="Password"
-              placeholder="Password"
-              onChange={handleChange}
-              value={values.password}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <LockIcon />
-                  </InputAdornment>
-                ),
-                endAdornment: (
-                  <InputAdornment position="end" onClick={() => setShow({ ...show, pwd: !show.pwd })}>
-                    {show.pwd ? (
-                      <Visibility aria-label="toggle password visibility" />
-                    ) : (
-                      <VisibilityOffIcon aria-label="toggle password visibility" />
-                    )}
-                  </InputAdornment>
-                ),
-              }}
-              error={errors.password}
-              helperText={errors.password}
-            />
-          </Box>
-          <Box pb={2} mt={2}>
-            <TextField
-              className={classes.w90}
-              type={show.cPwd ? 'text' : 'password'}
-              fullWidth
-              name="cPassword"
-              label="Confirm Password"
-              placeholder="Confirm Password"
-              onChange={handleChange}
-              value={values.cPassword}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <LockIcon />
-                  </InputAdornment>
-                ),
-                endAdornment: (
-                  <InputAdornment
-                    position="end"
-                    className={commonClasses.cPointer}
-                    onClick={() => setShow({ ...show, cPwd: !show.cPwd })}
-                  >
-                    {show.cPwd ? (
-                      <Visibility aria-label="toggle cPassword visibility" />
-                    ) : (
-                      <VisibilityOffIcon aria-label="toggle cPassword visibility" />
-                    )}
-                  </InputAdornment>
-                ),
-              }}
-              error={errors.cPassword}
-              helperText={errors.cPassword}
-            />
-          </Box>
-          {/* <Box
+        <Stack pb={2} mt={2}>
+          <TextField
+            className={classes.w90}
+            type={show.pwd ? 'text' : 'password'}
+            fullWidth
+            name="password"
+            label="Password"
+            onChange={handleChange}
+            value={values.password}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end" onClick={() => setShow({ ...show, pwd: !show.pwd })}>
+                  {show.pwd ? (
+                    <Visibility aria-label="toggle password visibility" />
+                  ) : (
+                    <VisibilityOffIcon aria-label="toggle password visibility" />
+                  )}
+                </InputAdornment>
+              ),
+            }}
+            error={errors.password}
+            helperText={errors.password}
+          />
+        </Stack>
+        <Stack pb={2} mt={2}>
+          <TextField
+            className={classes.w90}
+            type={show.cPwd ? 'text' : 'password'}
+            fullWidth
+            name="cPassword"
+            label="Confirm Password"
+            onChange={handleChange}
+            value={values.cPassword}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment
+                  position="end"
+                  className={commonClasses.cPointer}
+                  onClick={() => setShow({ ...show, cPwd: !show.cPwd })}
+                >
+                  {show.cPwd ? (
+                    <Visibility aria-label="toggle cPassword visibility" />
+                  ) : (
+                    <VisibilityOffIcon aria-label="toggle cPassword visibility" />
+                  )}
+                </InputAdornment>
+              ),
+            }}
+            error={errors.cPassword}
+            helperText={errors.cPassword}
+          />
+        </Stack>
+        {/* <Stack
             sx={{
               display: 'flex',
               justifyContent: 'space-between',
@@ -239,19 +217,18 @@ const Signup = () => {
               mt: 2,
             }}
           >
-            <Checkbox name="remember" label="Remember me" />
+            <CheckStack name="remember" label="Remember me" />
             <Typography variant="subtitle2" underline="hover">
               Forgot password?
             </Typography>
-          </Box> */}
-          <Box mt={2}>
-            <Button variant="contained" onClick={onSubmit}>
-              Sign up
-            </Button>
-          </Box>
-        </Grid>
+          </Stack> */}
+        <Stack mt={2} pb={12}>
+          <Button variant="contained" onClick={onSubmit} fullWidth sx={{ p: 1 }}>
+            Sign up
+          </Button>
+        </Stack>
       </Grid>
-    </Container>
+    </Grid>
   );
 };
 
