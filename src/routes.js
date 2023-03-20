@@ -11,6 +11,7 @@ import ProductsPage from './pages/ProductsPage';
 import DashboardAppPage from './pages/DashboardAppPage';
 import Login from './pages/Authentication/Login';
 import Signup from './pages/Authentication/Signup';
+import AuthLayout from './layouts/AuthLayout';
 
 // ----------------------------------------------------------------------
 
@@ -39,11 +40,11 @@ export default function Router() {
     },
     {
       path: 'login',
-      element: <Login />,
+      element: (<AuthLayout pageType="signin"><Login /></AuthLayout>),
     },
     {
-      path: 'signup',
-      element: <Signup />,
+      path: 'register',
+      element: (<AuthLayout pageType="signup"><Signup /></AuthLayout>),
     },
     {
       element: <SimpleLayout />,

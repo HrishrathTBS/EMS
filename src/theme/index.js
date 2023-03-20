@@ -10,7 +10,6 @@ import typography from './typography';
 import GlobalStyles from './globalStyles';
 import customShadows from './customShadows';
 import componentsOverride from './overrides';
-import commonClasses from './commonClasses';
 
 // ----------------------------------------------------------------------
 
@@ -19,14 +18,14 @@ ThemeProvider.propTypes = {
 };
 
 export default function ThemeProvider({ children }) {
+
   const themeOptions = useMemo(
     () => ({
       palette,
       shape: { borderRadius: 6 },
       typography,
       shadows: shadows(),
-      customShadows: customShadows(),
-      commonClasses
+      customShadows: customShadows()
     }),
     []
   );

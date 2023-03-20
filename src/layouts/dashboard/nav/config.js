@@ -43,7 +43,7 @@ const navConfig = [
   },
   {
     title: 'Sign Up',
-    path: '/signup',
+    path: '/register',
     icon: icon('ic_lock'),
   },
   {
