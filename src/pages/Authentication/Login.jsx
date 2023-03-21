@@ -5,8 +5,8 @@ import Button from '@mui/material/Button';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Visibility } from '@mui/icons-material';
 import Link from '@mui/material/Link';
-import { validateEmail, validatePassword } from '../../utils/validations';
 import useClasses from '../../theme/classes';
+import { validateEmail, validatePassword } from '../../utils/validations';
 
 const DefaultValues = {
   email: '',
@@ -104,7 +104,7 @@ const Login = () => {
       >
         <Checkbox name="remember" label="Remember me" />
         <Typography variant="subtitle2" underline="hover" pt={2}>
-          <Link href="#" variant="subtitle2" underline="none">
+          <Link href="/forgotpwd" variant="subtitle2" underline="none">
             Forgot password?
           </Link>
         </Typography>

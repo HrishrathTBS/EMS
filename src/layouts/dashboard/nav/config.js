@@ -36,6 +36,11 @@ const navConfig = [
     path: '/Ex/login',
     icon: icon('ic_lock'),
   },
+  // {
+  //   title: 'ForgotPWD',
+  //   path: '/forgotpwd',
+  //   icon: icon('ic_lock'),
+  // },
   {
     title: 'login',
     path: '/login',
