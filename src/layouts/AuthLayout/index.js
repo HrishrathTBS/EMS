@@ -48,6 +48,11 @@ const PageTitle = {
         heading: "sign up",
         tabTitle: "Register",
         welcomeMessage: "welcome to ems"
+    },
+    forgotPwd: {
+        heading: "sign up",
+        tabTitle: "Register",
+        welcomeMessage: "welcome to ems"
     }
 }
 
@@ -92,7 +97,7 @@ export default function AuthLayout({ children, pageType }) {
                             <Link href='/register' variant="subtitle2">Get started</Link>
                         </Typography>
 
-                        <Stack direction="row" spacing={2}>
+                        {pageType !== "forgotPwd" && (<Stack direction="row" spacing={2}>
                             <Button fullWidth size="large" color="inherit" variant="outlined">
                                 <Iconify icon="eva:google-fill" color="#DF3E30" width={22} height={22} />
                             </Button>
@@ -104,7 +109,7 @@ export default function AuthLayout({ children, pageType }) {
                             <Button fullWidth size="large" color="inherit" variant="outlined">
                                 <Iconify icon="eva:twitter-fill" color="#1C9CEA" width={22} height={22} />
                             </Button>
-                        </Stack>
+                        </Stack>)}
 
                         <Divider sx={{ my: 3 }}>
                             <Typography variant="body2" sx={{ color: 'text.secondary' }}>

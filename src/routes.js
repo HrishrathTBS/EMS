@@ -12,6 +12,7 @@ import DashboardAppPage from './pages/DashboardAppPage';
 import Login from './pages/Authentication/Login';
 import Signup from './pages/Authentication/Signup';
 import AuthLayout from './layouts/AuthLayout';
+import AuthGuard from './Guards/AuthGuard';
 
 // ----------------------------------------------------------------------
 
@@ -40,16 +41,20 @@ export default function Router() {
     },
     {
       path: 'login',
-      element: (<AuthLayout pageType="signin"><Login /></AuthLayout>),
+      element: (
+        <AuthLayout pageType="signin"><Login /></AuthLayout>),
     },
     {
       path: 'register',
       element: (<AuthLayout pageType="signup"><Signup /></AuthLayout>),
     },
     {
-      element: <SimpleLayout />,
+      element: <AuthGuard>
+        <SimpleLayout />
+      </AuthGuard>,
       children: [
         { element: <Navigate to="/Ex/dashboard/app" />, index: true },
+        { path: "/dashboard/user" },
         { path: '404', element: <Page404 /> },
         { path: '*', element: <Navigate to="/404" /> },
       ],

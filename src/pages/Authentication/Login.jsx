@@ -5,8 +5,10 @@ import Button from '@mui/material/Button';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Visibility } from '@mui/icons-material';
 import Link from '@mui/material/Link';
+import { useNavigate } from 'react-router-dom';
 import { validateEmail, validatePassword } from '../../utils/validations';
 import useClasses from '../../theme/classes';
+import { login } from '../../API/auth';
 
 const DefaultValues = {
   email: '',
@@ -15,6 +17,7 @@ const DefaultValues = {
 
 const Login = () => {
   const classes = useClasses();
+  const navigate = useNavigate();
   const [values, setValues] = useState(DefaultValues);
   const [errors, setErrors] = useState({
     email: '',
@@ -33,8 +36,14 @@ const Login = () => {
     let tempErrors = { ...errors };
     let valid = true;
 
-    const emailError = validateEmail(tempErrors.email);
-    const pwdError = validatePassword(tempErrors.password);
+    console.log('VAlues: ', values);
+
+    const emailError = validateEmail(values.email);
+    const pwdError = validatePassword(values.password);
+
+    console.log('emailError: ', emailError);
+    console.log('pwdError: ', pwdError);
+
     if (emailError) {
       tempErrors = { ...tempErrors, email: emailError };
       valid = false;
@@ -52,7 +61,9 @@ const Login = () => {
       return false;
     }
     console.log('Submitted', values);
-    setValues(DefaultValues);
+    // setValues(DefaultValues);
+    login();
+    navigate('/dashboard/user');
     return true;
   };
 
