@@ -12,7 +12,6 @@ import DashboardAppPage from './pages/DashboardAppPage';
 import Login from './pages/Authentication/Login';
 import Signup from './pages/Authentication/Signup';
 import AuthLayout from './layouts/AuthLayout';
-import ForgotPWD from './pages/Authentication/ForgotPWD';
 
 // ----------------------------------------------------------------------
 
@@ -41,27 +40,11 @@ export default function Router() {
     },
     {
       path: 'login',
-      element: (
-        <AuthLayout pageType="signin">
-          <Login />
-        </AuthLayout>
-      ),
-    },
-    {
-      path: 'forgotpwd',
-      element: (
-        // <AuthLayout pageType="forgotpwd">
-        <ForgotPWD />
-        // </AuthLayout>
-      ),
+      element: (<AuthLayout pageType="signin"><Login /></AuthLayout>),
     },
     {
       path: 'register',
-      element: (
-        <AuthLayout pageType="signup">
-          <Signup />
-        </AuthLayout>
-      ),
+      element: (<AuthLayout pageType="signup"><Signup /></AuthLayout>),
     },
     {
       element: <SimpleLayout />,
