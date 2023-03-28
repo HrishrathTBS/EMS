@@ -5,10 +5,8 @@ import Button from '@mui/material/Button';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Visibility } from '@mui/icons-material';
 import Link from '@mui/material/Link';
-import { useNavigate } from 'react-router-dom';
 import { validateEmail, validatePassword } from '../../utils/validations';
 import useClasses from '../../theme/classes';
-import { login } from '../../API/auth';
 
 const DefaultValues = {
   email: '',
@@ -17,7 +15,6 @@ const DefaultValues = {
 
 const Login = () => {
   const classes = useClasses();
-  const navigate = useNavigate();
   const [values, setValues] = useState(DefaultValues);
   const [errors, setErrors] = useState({
     email: '',
@@ -36,14 +33,8 @@ const Login = () => {
     let tempErrors = { ...errors };
     let valid = true;
 
-    console.log('VAlues: ', values);
-
-    const emailError = validateEmail(values.email);
-    const pwdError = validatePassword(values.password);
-
-    console.log('emailError: ', emailError);
-    console.log('pwdError: ', pwdError);
-
+    const emailError = validateEmail(tempErrors.email);
+    const pwdError = validatePassword(tempErrors.password);
     if (emailError) {
       tempErrors = { ...tempErrors, email: emailError };
       valid = false;
@@ -61,9 +52,7 @@ const Login = () => {
       return false;
     }
     console.log('Submitted', values);
-    // setValues(DefaultValues);
-    login();
-    navigate('/dashboard/user');
+    setValues(DefaultValues);
     return true;
   };
 
@@ -115,7 +104,7 @@ const Login = () => {
       >
         <Checkbox name="remember" label="Remember me" />
         <Typography variant="subtitle2" underline="hover" pt={2}>
-          <Link href="#" variant="subtitle2" underline="none">
+          <Link href="/forgetpwd" variant="subtitle2" underline="none">
             Forgot password?
           </Link>
         </Typography>
