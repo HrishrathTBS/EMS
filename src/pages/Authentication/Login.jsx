@@ -104,7 +104,7 @@ const Login = () => {
       >
         <Checkbox name="remember" label="Remember me" />
         <Typography variant="subtitle2" underline="hover" pt={2}>
-          <Link href="#" variant="subtitle2" underline="none">
+          <Link href="/forgetpwd" variant="subtitle2" underline="none">
             Forgot password?
           </Link>
         </Typography>
