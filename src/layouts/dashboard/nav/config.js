@@ -42,6 +42,11 @@ const navConfig = [
     icon: icon('ic_lock'),
   },
   {
+    title: 'forgetpwd',
+    path: '/forgetpwd',
+    icon: icon('ic_lock'),
+  },
+  {
     title: 'Sign Up',
     path: '/register',
     icon: icon('ic_lock'),
@@ -50,6 +55,11 @@ const navConfig = [
     title: 'Practice',
     path: '/Ex/practice',
     icon: icon('ic_lock'),
+  },
+  {
+    title: 'Profile',
+    path: '/profile',
+    icon: icon('ic_analytics'),
   },
   {
     title: 'Not found',

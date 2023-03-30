@@ -11,8 +11,11 @@ import ProductsPage from './pages/ProductsPage';
 import DashboardAppPage from './pages/DashboardAppPage';
 import Login from './pages/Authentication/Login';
 import Signup from './pages/Authentication/Signup';
+import ForgetPwd from './pages/Authentication/ForgetPwd';
 import AuthLayout from './layouts/AuthLayout';
 import Practice from './pages/Practice';
+import AuthGuard from './Guards/AuthGuard';
+import Profile from './pages/Authentication/Profile';
 
 // ----------------------------------------------------------------------
 
@@ -46,16 +49,38 @@ export default function Router() {
     },
     {
       path: 'login',
-      element: (<AuthLayout pageType="signin"><Login /></AuthLayout>),
+      element: (
+        <AuthLayout pageType="signin">
+          <Login />
+        </AuthLayout>
+      ),
     },
     {
       path: 'register',
-      element: (<AuthLayout pageType="signup"><Signup /></AuthLayout>),
+      element: (
+        <AuthLayout pageType="signup">
+          <Signup />
+        </AuthLayout>
+      ),
     },
     {
-      element: <SimpleLayout />,
+      path: 'forgetpwd',
+      element: (
+        <AuthLayout pageType="forgetPwd">
+          <ForgetPwd />
+        </AuthLayout>
+      ),
+    },
+
+    {
+      element: (
+        <AuthGuard>
+          <SimpleLayout />
+        </AuthGuard>
+      ),
       children: [
-        { element: <Navigate to="/Ex/dashboard/app" />, index: true },
+        { element: <Navigate to="Ex/dashboard/app" />, index: true },
+        { path: 'Ex/dashboard/user' },
         { path: '404', element: <Page404 /> },
         { path: '*', element: <Navigate to="/404" /> },
       ],
