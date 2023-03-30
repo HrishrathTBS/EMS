@@ -12,6 +12,7 @@ import DashboardAppPage from './pages/DashboardAppPage';
 import Login from './pages/Authentication/Login';
 import Signup from './pages/Authentication/Signup';
 import AuthLayout from './layouts/AuthLayout';
+import Practice from './pages/Practice';
 
 // ----------------------------------------------------------------------
 
@@ -36,6 +37,11 @@ export default function Router() {
           path: 'login',
           element: <LoginPage />,
         },
+        {
+          path: 'practice',
+          element: <Practice />,
+        },
+
       ],
     },
     {
